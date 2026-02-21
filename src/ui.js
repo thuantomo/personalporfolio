@@ -6,7 +6,7 @@ Object.assign(overlay.style, {
   position: "fixed",
   inset: 0,
   background: "rgba(0,0,0,0.35)",
-  backdropFilter: "blur(12px)",
+  backdropFilter: "blur(1px)",
   WebkitBackdropFilter: "blur(1px)",
   opacity: 0,
   pointerEvents: "none",

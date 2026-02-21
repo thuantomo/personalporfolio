@@ -131,7 +131,6 @@ function focus(object, data) {
   controls.enableRotate = false;
   controls.enableZoom = false;
 
-  // 👇 SỬA CHỖ NÀY
   openPanel(data.title, data.content);
 
   isFocused = true;

@@ -1,7 +1,7 @@
 import { scene, camera, renderer, controls } from "./scene.js";
 import { loadIsland } from "./model.js";
 import { handleClick } from "./interaction.js";
-import "./tailwind.css";
+import "./tailwind.css"; 
 
 loadIsland();
 
