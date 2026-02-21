@@ -19,6 +19,8 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
 document.body.style.margin = 0;
 document.body.appendChild(renderer.domElement);
 
@@ -54,10 +56,8 @@ let defaultCameraPosition = new THREE.Vector3();
 let defaultTarget = new THREE.Vector3();
 
 /* =========================
-   FLOATING BOTTOM PANELS
+   FLOATING PANELS
 ========================= */
-
-// Overlay (chỉ tối nhẹ, không blur)
 const overlay = document.createElement("div");
 Object.assign(overlay.style, {
   position: "fixed",
@@ -70,7 +70,6 @@ Object.assign(overlay.style, {
 });
 document.body.appendChild(overlay);
 
-// Container chứa 2 panel
 const panelContainer = document.createElement("div");
 Object.assign(panelContainer.style, {
   position: "fixed",
@@ -87,7 +86,6 @@ Object.assign(panelContainer.style, {
 });
 document.body.appendChild(panelContainer);
 
-// PANEL NHỎ (tiêu đề)
 const smallPanel = document.createElement("div");
 Object.assign(smallPanel.style, {
   background: "rgba(255,255,255,0.12)",
@@ -98,11 +96,9 @@ Object.assign(smallPanel.style, {
   fontSize: "18px",
   fontWeight: "600",
   fontFamily: "sans-serif",
-  boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
 });
 panelContainer.appendChild(smallPanel);
 
-// PANEL LỚN (nội dung)
 const largePanel = document.createElement("div");
 Object.assign(largePanel.style, {
   background: "rgba(255,255,255,0.08)",
@@ -112,19 +108,14 @@ Object.assign(largePanel.style, {
   color: "white",
   fontFamily: "sans-serif",
   lineHeight: "1.7",
-  boxShadow: "0 30px 80px rgba(0,0,0,0.5)",
+  maxHeight: "60vh",
+  overflowY: "auto",
 });
 panelContainer.appendChild(largePanel);
 
-function openPanel(title) {
+function openPanel(title, content) {
   smallPanel.innerHTML = title;
-
-  largePanel.innerHTML = `
-    Đây là nội dung cho <b>${title}</b>.
-    <br/><br/>
-    Bạn có thể thay phần này bằng thông tin project,
-    kỹ năng hoặc mô tả cá nhân.
-  `;
+  largePanel.innerHTML = content;
 
   panelContainer.style.bottom = "40px";
   overlay.style.opacity = 1;
@@ -137,16 +128,57 @@ function closePanel() {
   overlay.style.pointerEvents = "none";
 }
 
-overlay.addEventListener("click", resetView); 
+overlay.addEventListener("click", resetView);
+
 /* =========================
-   INFO MAP
+   INFO MAP (TITLE + CONTENT)
 ========================= */
 const infoMap = {
-  Sphere001: "Projects",
-  body: "About Me",
-  Sphere007: "Skills",
-  Sphere002: "Contact",
-  Sphere005: "???",
+  Sphere001: {
+    title: "Projects",
+    content: `
+      <h3>My Projects</h3>
+      <p>• 3D Personal Portfolio</p>
+      
+    `,
+  },
+
+  body: {
+    title: "About Me",
+    content: `
+      <h3>Nguyễn Quang Thuận</h3>
+      <p>Tôi là developer yêu thích web 3D và animation.</p>
+      <p>Hiện đang tập trung vào Frontend.</p>
+    `,
+  },
+
+  Sphere007: {
+    title: "Skills",
+    content: `
+      <h3>Skills</h3>
+      <p>• Three.js</p>
+      <p>• JavaScript</p>
+      <p>• GSAP Animation</p>
+      <p>• Responsive Design</p>
+    `,
+  },
+
+  Sphere002: {
+    title: "Contact",
+    content: `
+      <h3>Contact</h3>
+      <p>Email: nquangthuan1902@gmail.com</p>
+      <p>GitHub: github.com/thuantomo</p>
+    `,
+  },
+
+  Sphere005: {
+    title: "Coming Soon",
+    content: `
+      <h3>New Feature</h3>
+      <p>Tính năng này đang được phát triển.</p>
+    `,
+  },
 };
 
 /* =========================
@@ -220,8 +252,7 @@ function handleInteraction(x, y) {
 /* =========================
    FOCUS OBJECT
 ========================= */
-function focusObject(object, title) {
-
+function focusObject(object, data) {
   const box = new THREE.Box3().setFromObject(object);
   const center = box.getCenter(new THREE.Vector3());
   const size = box.getSize(new THREE.Vector3()).length();
@@ -251,7 +282,7 @@ function focusObject(object, title) {
   controls.autoRotateSpeed = 1.2;
 
   isFocused = true;
-  openPanel(title);
+  openPanel(data.title, data.content);
 }
 
 /* =========================
