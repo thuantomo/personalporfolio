@@ -146,6 +146,7 @@ const infoMap = {
   body: "About Me",
   Sphere007: "Skills",
   Sphere002: "Contact",
+  Sphere005: "???",
 };
 
 /* =========================
