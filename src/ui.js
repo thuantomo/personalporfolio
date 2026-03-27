@@ -1,6 +1,6 @@
 // ========================= UI SYSTEM =========================
 
-// Overlay (tối + blur nền kiểu Apple)
+// Overlay
 const overlay = document.createElement("div");
 Object.assign(overlay.style, {
   position: "fixed",
@@ -35,7 +35,8 @@ document.body.appendChild(panelContainer);
 // ===== PANEL NHỎ =====
 const smallPanel = document.createElement("div");
 Object.assign(smallPanel.style, {
-  background: "linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05))",
+  background:
+    "linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05))",
   backdropFilter: "blur(25px)",
   WebkitBackdropFilter: "blur(25px)",
   border: "1px solid rgba(255,255,255,0.2)",
@@ -52,7 +53,8 @@ panelContainer.appendChild(smallPanel);
 // ===== PANEL LỚN =====
 const largePanel = document.createElement("div");
 Object.assign(largePanel.style, {
-  background: "linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04))",
+  background:
+    "linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04))",
   backdropFilter: "blur(30px)",
   WebkitBackdropFilter: "blur(30px)",
   border: "1px solid rgba(255,255,255,0.15)",

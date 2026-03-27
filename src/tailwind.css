@@ -2,9 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Apple-style system font */
 body {
-  font-family: -apple-system, BlinkMacSystemFont,
-    "SF Pro Display", "SF Pro Text",
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  margin: 0;
+  background: #000;
+
+  /* icon */
+  .social-icons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    gap: 20px;
+    z-index: 999;
+  }
+
+  /* icon style */
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 20px;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+
+    transition: 0.3s;
+  }
+
+  /* hover */
+  .social-icons a:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+  }
 }

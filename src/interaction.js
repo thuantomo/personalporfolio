@@ -2,10 +2,7 @@ import * as THREE from "three";
 import { gsap } from "gsap";
 import { camera, controls } from "./scene.js";
 
-
 import { openPanel, closePanel, overlay } from "./ui.js";
-
-
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
@@ -30,9 +27,15 @@ const infoMap = {
   body: {
     title: "About Me",
     content: `
-      <h3>Nguyễn Quang Thuận</h3>
-      <p>Tôi là developer yêu thích web 3D và animation.</p>
-      <p>Hiện đang tập trung vào Frontend.</p>
+      <h3>About Me</h3>
+<p>
+Hi, I'm Thuận (Jayden) — a passionate developer who loves creating interactive and visually engaging web experiences. 
+I enjoy working with modern technologies like Three.js to build immersive 3D environments and unique digital products.
+</p>
+
+<p>
+I'm always eager to learn new things, improve my skills, and turn creative ideas into reality.
+</p>
     `,
   },
 
@@ -42,8 +45,7 @@ const infoMap = {
       <h3>Skills</h3>
       <p>• Three.js</p>
       <p>• JavaScript</p>
-      <p>• GSAP Animation</p>
-      <p>• Responsive Design</p>
+    
     `,
   },
 
@@ -52,7 +54,7 @@ const infoMap = {
     content: `
       <h3>Contact</h3>
       <p>Email: nquangthuan1902@gmail.com</p>
-      <p>GitHub: github.com/thuantomo</p>
+      <p>Telephone: +84444444444</p>
     `,
   },
 
